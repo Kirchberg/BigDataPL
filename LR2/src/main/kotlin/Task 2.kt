@@ -11,7 +11,7 @@ import kotlin.random.Random
 k интервалам (-10k, 5], [0, 10], [5, 15], [10, 10k].
  */
 fun task10V1() {
-    println(message = "Task 1 Var. 1")
+    println(message = "Task 1 Var. 10")
 
     val jobReceivedTime = LocalDateTime.now()
 
@@ -53,6 +53,8 @@ fun task10V2() {
             println()
         }
     }
+
+    println(message = "Task 2 Var. 10")
 
     // Read the dimensionality of the matrix from the console
     print("Enter the dimensionality of the matrix: ")
