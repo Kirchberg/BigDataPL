@@ -58,14 +58,12 @@ fun task11() {
     val input = readLine()?.trim() ?: return
     val numbers = input.split(" ").mapNotNull { it.toIntOrNull() }.toList()
 
-
     val happyNumbers = mutableListOf<Int>()
     for (number in numbers) {
         if (isHappy(number)) {
             happyNumbers.add(number)
         }
     }
-
 
     if (happyNumbers.isNotEmpty()) {
         println("Happy numbers: ${happyNumbers.joinToString()}")
