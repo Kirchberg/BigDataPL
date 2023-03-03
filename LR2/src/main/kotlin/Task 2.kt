@@ -2,6 +2,35 @@ import java.time.LocalDateTime
 import kotlin.random.Random
 
 // Variant №1
+// Task №1
+
+/*
+№1. Ввести n строк с консоли, найти самую короткую и самую длинную строки. Вывести найденные строки и их длину
+ */
+
+fun task1V1() {
+    println("Enter the number of strings:")
+    val n = readLine()?.toInt() ?: 0
+
+    var shortest: String? = null
+    var longest: String? = null
+
+    for (i in 0 until n) {
+        println("Enter string #$i:")
+        val str = readLine() ?: ""
+        if (shortest == null || str.length < shortest.length) {
+            shortest = str
+        }
+        if (longest == null || str.length > longest.length) {
+            longest = str
+        }
+    }
+
+    println("Shortest string: $shortest, length: ${shortest?.length ?: 0}")
+    println("Longest string: $longest, length: ${longest?.length ?: 0}")
+}
+
+// Variant №1
 // Task №10
 
 /*
@@ -22,7 +51,7 @@ fun task10V1() {
     var k = readlnOrNull()?.toIntOrNull() ?: return
 
     when (k) {
-        in -10 * k..5 -> println("$k belongs to the interval (-10000, 5]")
+        in -10000..5 -> println("$k belongs to the interval (-10000, 5]")
         in 0..10 -> println("$k belongs to the interval [0, 10]")
         in 5..15 -> println("$k belongs to the interval [5, 15]")
         in 10..10000 -> println("$k belongs to the interval [10, 10000]")
@@ -36,7 +65,53 @@ fun task10V1() {
 }
 
 // Variant №2
-// Task №10
+// Task №1
+
+/*
+№1. Ввести с консоли n – размерность матрицы a[n][n]. Задать значения элементов матрицы в интервале значений от -n до n
+с помощью датчика случайных чисел. Упорядочить строки (столбцы) матрицы в порядке возрастания значений элементов k-го
+столбца (строки).
+ */
+
+// Variant №2
+// Task №11
+
+fun task1V2() {
+
+    print("Введите размерность матрицы: ")
+    val n = readLine()?.toIntOrNull() ?: return
+    val matrix = Array(n) { IntArray(n) }
+
+    // заполняем матрицу случайными числами от -n до n
+    for (i in 0 until n) {
+        for (j in 0 until n) {
+            matrix[i][j] = Random.nextInt(-n, n + 1)
+        }
+    }
+
+    println("Начальная матрица:")
+    for (row in matrix) {
+        println(row.joinToString(separator = " "))
+    }
+
+    print("Введите номер столбца (строки) для сортировки: ")
+    val k = readLine()?.toIntOrNull() ?: return
+    val ascendingComparator = compareBy<Int> { it }
+    // для сортировки столбцов по возрастанию значений k-го столбца
+    if (k < n) {
+        matrix.sortBy { it[k] }
+    }
+    // для сортировки строк по возрастанию значений k-й строки
+    else if (k < n * 2) {
+        val row = k - n
+        matrix.sortBy { it[row] }
+    }
+    println("Отсортированная матрица:")
+    for (row in matrix) {
+        println(row.joinToString(separator = " "))
+    }
+
+}
 
 /*
 №10. Ввести с консоли n – размерность матрицы a[n][n]. Задать значения элементов матрицы в интервале значений от -n до n
